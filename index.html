@@ -23,13 +23,19 @@
       cursor: var(--cursor);
     }
 
-    /* === 1. SPARKLING STARS BACKGROUND === */
-    #stars-container {
+    /* === 1. SPARKLING STARS & FLOATING WORDS BACKGROUND === */
+    #stars-container, #floating-words-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    #stars-container {
       background: linear-gradient(-45deg, #2c004f, #1a002e, #4f0050, #2c004f);
       background-size: 400% 400%;
       animation: gradientMove 20s ease infinite;
+      z-index: 1;
     }
+    #floating-words-container { z-index: 2; }
+
     @keyframes gradientMove {
       0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
     }
@@ -42,6 +48,21 @@
       0%, 100% { opacity: 0; transform: scale(0.8); }
       50% { opacity: 1; transform: scale(1); }
     }
+    /* NEW: Floating Words Style */
+    .floating-word {
+        position: absolute;
+        font-family: 'Caveat', cursive;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 30px;
+        user-select: none;
+        animation: floatUp linear forwards;
+    }
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        15%, 85% { opacity: 1; }
+        100% { transform: translateY(-150px) rotate(20deg); opacity: 0; }
+    }
+
 
     /* === 2. THE ENVELOPE === */
     .envelope-container {
@@ -115,6 +136,7 @@
 <body>
 
   <div id="stars-container"></div>
+  <div id="floating-words-container"></div>
 
   <audio id="openSound" src="Envelope.mp3" preload="auto"></audio>
   <audio id="backgroundMusic" src="bir.mp3" loop preload="auto"></audio>
@@ -161,8 +183,9 @@
 
     // --- State ---
     let isCardOpen = false;
+    let wordInterval;
 
-    // --- Particle & Star Effects ---
+    // --- Particle, Star, and Word Effects ---
     function createParticles(type, count, colors) {
       for (let i = 0; i < count; i++) {
         const el = document.createElement("div");
@@ -180,7 +203,7 @@
 
     function createStars() {
         const container = document.getElementById('stars-container');
-        if (container.childElementCount > 0) return; // Don't create stars if they exist
+        if (container.childElementCount > 0) return;
         for(let i = 0; i < 100; i++) {
             const star = document.createElement('div');
             star.className = 'star';
@@ -192,15 +215,35 @@
         }
     }
 
+    // NEW: Floating Words Function
+    function createFloatingWord() {
+        const words = ["Joy", "Love", "Smile", "Hugs", "Magic", "Sparkle", "Happy"];
+        const container = document.getElementById('floating-words-container');
+
+        const wordEl = document.createElement('div');
+        wordEl.className = 'floating-word';
+        wordEl.textContent = words[Math.floor(Math.random() * words.length)];
+
+        wordEl.style.left = `${Math.random() * 90}vw`;
+        wordEl.style.bottom = `-50px`; // Start from below the viewport
+        wordEl.style.fontSize = `${20 + Math.random() * 20}px`;
+        wordEl.style.animationDuration = `${5 + Math.random() * 5}s`;
+
+        container.appendChild(wordEl);
+
+        wordEl.addEventListener('animationend', () => {
+            wordEl.remove();
+        });
+    }
+
     // --- Typewriter Effect ---
     function typeWriter(elementId, text, speed, onComplete) {
       const element = document.getElementById(elementId);
-      element.innerHTML = ""; // Clear previous text
+      element.innerHTML = "";
       let i = 0;
       function type() {
         if (i < text.length) {
-          element.innerHTML += text.charAt(i);
-          i++;
+          element.innerHTML += text.charAt(i); i++;
           setTimeout(type, speed);
         } else {
             element.classList.remove('typing-cursor');
@@ -229,9 +272,10 @@
       setTimeout(() => {
         createParticles('confetti', 60, ['#ff69b4', '#ffc0cb', '#ffb6c1', '#ffffff']);
         createParticles('heart', 30, ['#ff1493', '#ffc0cb']);
+        // Start floating words
+        wordInterval = setInterval(createFloatingWord, 1000);
       }, 1200);
 
-      // Start typing animation sequence
       setTimeout(() => {
         typeWriter('line1', line1Text, 50, () => {
           typeWriter('line2', line2Text, 60, () => {
@@ -253,6 +297,10 @@
       backgroundMusic.pause();
       backgroundMusic.currentTime = 0;
       musicBtn.innerHTML = '🎵';
+
+      // Stop and clear floating words
+      clearInterval(wordInterval);
+      document.getElementById('floating-words-container').innerHTML = '';
 
       document.getElementById('line1').innerHTML = "";
       document.getElementById('line2').innerHTML = "";
@@ -277,6 +325,4 @@
     createStars();
   </script>
 </body>
-
 </html>
-
