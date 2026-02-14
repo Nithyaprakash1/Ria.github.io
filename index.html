@@ -1,328 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>A Magical Wish for Ria! ✨</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24">💖</text></svg>'), auto; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Progress Report - Nithya Prakash M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0b001a;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: var(--cursor);
-    }
+    <style>
+        :root {
+            --electric-purple: #9d50bb;
+            --deep-purple: #0f051a;
+            --bright-white: #ffffff;
+            --soft-white: #cbd5e1;
+            --neon-green: #deff9a;
+            --danger-red: #ff4d4d;
+            --accent-glow: rgba(157, 80, 187, 0.4);
+        }
 
-    /* === 1. SPARKLING STARS & FLOATING WORDS BACKGROUND === */
-    #stars-container, #floating-words-container {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none;
-    }
-    #stars-container {
-      background: linear-gradient(-45deg, #2c004f, #1a002e, #4f0050, #2c004f);
-      background-size: 400% 400%;
-      animation: gradientMove 20s ease infinite;
-      z-index: 1;
-    }
-    #floating-words-container { z-index: 2; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
-    }
-    .star {
-      position: absolute; background-color: white; border-radius: 50%;
-      box-shadow: 0 0 10px #ffffff, 0 0 5px #ffc0cb;
-      animation: twinkle linear infinite;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1); }
-    }
-    /* NEW: Floating Words Style */
-    .floating-word {
-        position: absolute;
-        font-family: 'Caveat', cursive;
-        color: rgba(255, 255, 255, 0.3);
-        font-size: 30px;
-        user-select: none;
-        animation: floatUp linear forwards;
-    }
-    @keyframes floatUp {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-        15%, 85% { opacity: 1; }
-        100% { transform: translateY(-150px) rotate(20deg); opacity: 0; }
-    }
+        body {
+            background-color: #050208;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        .presentation-wrapper {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            background-color: var(--deep-purple);
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+            border: 1px solid rgba(157, 80, 187, 0.2);
+        }
 
-    /* === 2. THE ENVELOPE === */
-    .envelope-container {
-      position: relative; width: 320px; height: 200px; cursor: var(--cursor);
-      animation: pulse 2.5s ease-in-out infinite;
-      transition: transform 0.6s ease, opacity 0.6s ease; z-index: 10;
-    }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-    .envelope-container.open { transform: scale(0.8); opacity: 0; pointer-events: none; }
-    .envelope-flap {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100px;
-      background: linear-gradient(to bottom, #ff69b4, #ffb6c1);
-      border-bottom: 4px solid #ff69b4; border-radius: 15px 15px 0 0;
-      transform-origin: top; transition: transform 0.6s ease-in-out; z-index: 3;
-    }
-    .envelope-body {
-      position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-      background-color: #fff0f5; border-radius: 15px; border: 4px solid #ff69b4;
-      box-shadow: 0 0 25px rgba(255, 105, 180, 0.7); z-index: 1;
-    }
-    .envelope-text {
-      position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
-      z-index: 4; color: white; font-size: 1.5rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    .envelope-container.open .envelope-flap { transform: rotateX(180deg); }
+        .slide {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, #000000 100%);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            padding: 50px 70px;
+            color: var(--bright-white);
+            z-index: 1;
+        }
 
-    /* === 3. THE LETTER CARD === */
-    .letter-card {
-      position: absolute; width: 90vw; max-width: 600px; height: auto; min-height: 450px;
-      background: #fefcf3; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      padding: 30px 40px; text-align: center;
-      display: flex; flex-direction: column; justify-content: space-between;
-      opacity: 0; transform: scale(0.5) rotate(-15deg); pointer-events: none;
-      transition: opacity 0.8s ease-out 0.5s, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
-      z-index: 20;
-    }
-    .letter-card.show { opacity: 1; transform: scale(1) rotate(0deg); pointer-events: auto; }
-    .letter-card h1 { font-family: 'Caveat', cursive; font-size: clamp(2rem, 6vw, 3rem); color: #ff1493; }
-    .letter-card p { font-family: 'Caveat', cursive; font-size: clamp(1.5rem, 4vw, 1.8rem); color: #333; line-height: 1.5; min-height: 2.5em; text-align: center;}
-    .closing-container { width: 100%; text-align: right; }
-    .closing-container p { min-height: 1.8em; }
+        .slide.active { display: flex; z-index: 10; }
 
-    .typing-cursor::after {
-        content: '|'; display: inline-block; animation: blink 0.7s infinite; color: #d63384;
-    }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .logo-box {
+            position: absolute;
+            top: 40px;
+            right: 70px;
+            height: 65px;
+            z-index: 100;
+        }
 
-    /* === 4. UI CONTROLS === */
-    .controls {
-      position: fixed; top: 20px; right: 20px; z-index: 100;
-      display: flex; gap: 15px;
-      opacity: 0; pointer-events: none; transition: opacity 0.5s ease 2s;
-    }
-    .controls.show { opacity: 1; pointer-events: auto; }
-    .control-btn {
-      background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4);
-      color: white; width: 50px; height: 50px; border-radius: 50%;
-      font-size: 24px; display: flex; align-items: center; justify-content: center;
-      backdrop-filter: blur(5px); transition: background 0.3s, transform 0.3s;
-    }
-    .control-btn:hover { background: rgba(255, 255, 255, 0.4); transform: scale(1.1); }
+        .logo-box img { height: 100%; filter: drop-shadow(0 0 15px var(--electric-purple)); }
 
-    /* === 5. CELEBRATION EFFECTS === */
-    .confetti, .heart { position: fixed; z-index: 999; opacity: 0; pointer-events: none; }
-    .confetti { width: 8px; height: 8px; background: var(--color); border-radius: 50%; animation: fall linear forwards; }
-    @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
-    .heart { font-size: 1.5rem; color: var(--color); animation: floatHeart ease-out forwards; }
-    @keyframes floatHeart { 0% { transform: translateY(110vh) scale(0.5); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
-  </style>
+        h1 { font-size: 72px; font-weight: 800; line-height: 1; margin: 0; }
+        h1 span { color: var(--electric-purple); }
+
+        h2.slide-title {
+            font-size: 30px;
+            margin-bottom: 30px;
+            border-left: 6px solid var(--electric-purple);
+            padding-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        h3 { color: var(--electric-purple); font-size: 18px; margin: 0 0 10px 0; font-weight: 700; }
+
+        p, li { font-size: 15px; color: var(--soft-white); line-height: 1.5; margin-bottom: 8px; }
+
+        .nav-controls {
+            position: absolute;
+            bottom: 35px;
+            right: 70px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(157, 80, 187, 0.2);
+            border: 1px solid var(--electric-purple);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover { background: var(--electric-purple); box-shadow: 0 0 20px var(--accent-glow); }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 45px;
+            left: 70px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(157, 80, 187, 0.2);
+            border-radius: 12px;
+            padding: 22px;
+            height: 100%;
+        }
+
+        .accent-box { background: rgba(157, 80, 187, 0.1); border-radius: 8px; padding: 12px; margin-top: 10px; }
+
+        ul.styled-list { list-style: none; padding: 0; }
+        ul.styled-list li { position: relative; padding-left: 25px; margin-bottom: 8px; }
+        ul.styled-list li i { position: absolute; left: 0; color: var(--electric-purple); top: 3px; }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            background: var(--electric-purple);
+            margin-bottom: 10px;
+        }
+
+        .date-badge { color: var(--neon-green); font-family: 'Azeret Mono', monospace; font-size: 14px; }
+
+        .metric-value { font-size: 24px; font-weight: 800; color: var(--neon-green); margin: 5px 0; }
+
+        .revenue-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .revenue-table th {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 2px solid var(--electric-purple);
+            color: var(--electric-purple);
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        .revenue-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(157, 80, 187, 0.1);
+        }
+        .revenue-table tr:hover {
+            background: rgba(157, 80, 187, 0.05);
+        }
+        .price-text { color: var(--bright-white); font-weight: 700; font-family: 'Azeret Mono', monospace; }
+        .amc-text { color: var(--neon-green); font-weight: 800; font-family: 'Azeret Mono', monospace; }
+    </style>
 </head>
 <body>
 
-  <div id="stars-container"></div>
-  <div id="floating-words-container"></div>
+    <div class="presentation-wrapper">
+        <div class="logo-box">
+            <img src="https://fortumars.com/fortumarslogo.png" alt="Fortumars Logo">
+        </div>
 
-  <audio id="openSound" src="Envelope.mp3" preload="auto"></audio>
-  <audio id="backgroundMusic" src="bir.mp3" loop preload="auto"></audio>
+        <!-- SLIDE 1: COVER -->
+        <div class="slide active">
+            <div style="margin-top: 100px;">
+                <p class="date-badge">CONSOLIDATED WEEKLY REPORT</p>
+                <h1>TECHNICAL STATUS<br><span>UPDATE</span></h1>
+                <div style="margin-top: 60px;">
+                    <p style="font-size: 32px; font-weight: 800; margin-bottom: 5px;">Nithya Prakash M</p>
+                    <p style="font-size: 20px; color: var(--electric-purple); font-weight: 700; letter-spacing: 4px;">HEAD OF TECHNICAL</p>
+                    <div style="margin-top: 30px; opacity: 0.8;">
+                        <p>COGNITHORZ | FORTUMARS AI TECHNOLOGIES</p>
+                        <p>Period: February 11 – February 13, 2025</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 01 / 13</div>
+        </div>
 
-  <!-- The Envelope -->
-  <div class="envelope-container" id="envelopeContainer">
-    <div class="envelope-flap"></div>
-    <div class="envelope-body"></div>
-    <div class="envelope-text">A special note for Ria...</div>
-  </div>
+        <!-- SLIDE 2: CLIENT ENGAGEMENT -->
+        <div class="slide">
+            <h2 class="slide-title">Client Meeting Engagement</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>High-Impact Consultations</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-handshake"></i> 14 Strategic Meetings (Total)</li>
+                        <li><i class="fas fa-briefcase"></i> Job Seeker Platform Deep-dives</li>
+                        <li><i class="fas fa-store"></i> SaaS Pricing Models for Boutiques</li>
+                        <li><i class="fas fa-video"></i> Recorded/Edited Client Demo Videos</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Strategic Approvals</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-file-invoice"></i> Approved: Job Seeker Quotation</li>
+                        <li><i class="fas fa-check-circle"></i> Approved: Lottery App License Certificate</li>
+                        <li><i class="fas fa-paper-plane"></i> Quotations Sent: Sales Agent Activity Tracker</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 02 / 13</div>
+        </div>
 
-  <!-- The Letter Card -->
-  <div class="letter-card" id="letterCard">
-    <div class="message-content">
-      <h1>Happy Birthday, Ria! 🎂</h1>
-      <p><span id="line1" class="typing-cursor"></span></p>
+        <!-- SLIDE 3: CLIENT SERVICE & STRATEGY -->
+        <div class="slide">
+            <h2 class="slide-title">Client Service & Strategy</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="status-badge">PRICING MODELS</div>
+                    <ul class="styled-list">
+                        <li>Finalized tiered templates for Websites & Software</li>
+                        <li>Specialized CRM pricing for dedicated clients</li>
+                        <li>SaaS targets: 100+ Shops by July</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="status-badge">FINANCIAL & ADMIN</div>
+                    <ul class="styled-list">
+                        <li>Razorpay Account: Verification Stage</li>
+                        <li>Subdomain Config: Created 2 new subdomains</li>
+                        <li>Official Mail: operations@cognithorz.com created</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 03 / 13</div>
+        </div>
+
+        <!-- SLIDE 4: MARSHRM DEVELOPMENT -->
+        <div class="slide">
+            <h2 class="slide-title">MarsHRM Platform Development</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Reporting & Analytics</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-file-pdf"></i> Integrated PDF report downloads</li>
+                        <li><i class="fas fa-chart-line"></i> Added Business Intern Report module</li>
+                        <li><i class="fas fa-magic"></i> Auto-Generation Report in Phone View</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Tracking & UI</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-map-marker-alt"></i> GPS Tracking system audit & implementation</li>
+                        <li><i class="fas fa-mobile"></i> Optimized menu for mobile viewing</li>
+                        <li><i class="fas fa-bolt"></i> Implemented Popper animations for UX</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 04 / 13</div>
+        </div>
+
+        <!-- SLIDE 5: REVENUE METRICS & GROWTH PLAN -->
+        <div class="slide">
+            <h2 class="slide-title">Revenue Metrics & Growth Plan</h2>
+            <div class="grid-2">
+                <div>
+                    <div class="card" style="padding: 0 15px 15px 15px; border-color: var(--neon-green);">
+                        <table class="revenue-table">
+                            <thead>
+                                <tr>
+                                    <th>Service / Product</th>
+                                    <th>One-Time</th>
+                                    <th>AMC (Monthly)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Job Seeker Platform</td>
+                                    <td class="price-text">₹1,00,000</td>
+                                    <td class="amc-text">₹5,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom CRM</td>
+                                    <td class="price-text">₹35,000</td>
+                                    <td class="amc-text">₹1,500</td>
+                                </tr>
+                                <tr>
+                                    <td>JM TECHS Solutions</td>
+                                    <td class="price-text">₹35,000</td>
+                                    <td class="amc-text">₹1,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Sales Agent Tracker</td>
+                                    <td class="price-text">₹30,000</td>
+                                    <td class="amc-text">₹2,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Digital Marketing</td>
+                                    <td class="price-text">--</td>
+                                    <td class="amc-text">₹10,000</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="background: rgba(222, 255, 154, 0.1);">
+                                    <td style="font-weight: 800; color: var(--bright-white);">TOTALS</td>
+                                    <td class="price-text" style="color: var(--bright-white);">₹2,00,000</td>
+                                    <td class="amc-text" style="font-size: 16px;">₹20,500</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="card" style="margin-top: 10px; padding: 15px;">
+                        <h3>Project Timeline Expectations</h3>
+                        <ul class="styled-list">
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Job Seeker:</strong> 3 - 4 Months</li>
+                            <li><i class="fas fa-calendar-check"></i> <strong>JM TECHS:</strong> 2 - 3 Months</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="status-badge" style="background: var(--neon-green); color: black;">SAAS GROWTH PLAN</div>
+                    <div class="metric-value" style="font-size: 32px;">₹3L+ MRR <span style="font-size: 14px; opacity: 0.6;">(Target July)</span></div>
+
+                    <ul class="styled-list" style="margin-top: 20px;">
+                        <li><i class="fas fa-bullseye"></i> Onboard 100+ Shops via Boutique SaaS</li>
+                        <li><i class="fas fa-chart-pie"></i> AMC/Marketing Contribution: ₹20,500</li>
+                    </ul>
+
+                    <div class="accent-box" style="background: rgba(157, 80, 187, 0.2);">
+                        <p style="font-size: 12px; font-style: italic;">Note: Digital Marketing and high-end AMC packages are now core to our monthly recurring strategy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 05 / 13</div>
+        </div>
+
+        <!-- SLIDE 6: TECHNICAL SUPPORT & ONBOARDING (NEW) -->
+        <div class="slide">
+            <h2 class="slide-title">Technical Support & Onboarding</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Assisted Varsha (Support Lead)</h3>
+                    <p>Strategic technical assistance for handling intern inquiries:</p>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-graduation-cap"></i> JSRC Intern Technical Query Resolution</li>
+                        <li><i class="fas fa-school"></i> Pydah Intern Technical Query Resolution</li>
+                        <li><i class="fas fa-users-cog"></i> Team-wide technical troubleshooting</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Infrastructure Configuration</h3>
+                    <p>Managed deployment of MS Teams & Outlook for new interns:</p>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-envelope-open-text"></i> Futryx & Cognithorz</li>
+                        <li><i class="fas fa-eye"></i> Rudhra Netra</li>
+                        <li><i class="fas fa-rocket"></i> FortuMars</li>
+                        <li><i class="fas fa-lock"></i> Secured Account Provisioning</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 06 / 13</div>
+        </div>
+
+        <!-- SLIDE 7: INTERVIEW & RECRUITMENT -->
+        <div class="slide">
+            <h2 class="slide-title">Recruitment & Vetting</h2>
+            <div class="card">
+                <h3>Collaborative Technical Interviews</h3>
+                <div class="accent-box" style="border-left: 4px solid var(--electric-purple);">
+                    <p>Conducted high-level technical assessment sessions alongside <strong>Mr. Ragu</strong> for candidate screening.</p>
+                </div>
+                <div class="grid-2" style="margin-top: 20px;">
+                    <div class="card" style="background: rgba(157, 80, 187, 0.05);">
+                        <h3 style="color: var(--neon-green);">JSRC Candidates</h3>
+                        <p>Evaluated core programming logic, software architecture understanding, and problem-solving aptitude.</p>
+                    </div>
+                    <div class="card" style="background: rgba(157, 80, 187, 0.05);">
+                        <h3 style="color: var(--neon-green);">PYDAH Candidates</h3>
+                        <p>Assessed technical foundations and suitability for upcoming AI-driven projects.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 07 / 13</div>
+        </div>
+
+        <!-- SLIDE 8: INTERNSHIP & MENTORSHIP -->
+        <div class="slide">
+            <h2 class="slide-title">Internship Program & AI Training</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Modern AI Stack</h3>
+                    <p>Providing active mentorship on:</p>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-robot"></i> Lovable, Replit, and Bolt.new</li>
+                        <li><i class="fas fa-database"></i> Firebase & MongoDB Architecture</li>
+                        <li><i class="fas fa-laptop-code"></i> AI-Assisted Rapid Development</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Mentorship Scope</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-chalkboard-teacher"></i> Daily doubt clearing for intern projects</li>
+                        <li><i class="fas fa-code-branch"></i> Reviewing demo project architectures</li>
+                        <li><i class="fas fa-lightbulb"></i> Best practices in AI-prompt engineering</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 08 / 13</div>
+        </div>
+
+        <!-- SLIDE 9: INTERNAL APPLICATIONS -->
+        <div class="slide">
+            <h2 class="slide-title">Internal Tooling: Core-Reporting App</h2>
+            <div class="card">
+                <h3>To-Do & Reporting Application</h3>
+                <div class="accent-box" style="display: flex; justify-content: space-between; align-items: center;">
+                    <p style="color: var(--neon-green); font-weight: 700; margin: 0;">Completion Status: 70%</p>
+                    <p style="font-size: 12px; opacity: 0.6; margin: 0;">(30% Remaining: Priority Development)</p>
+                </div>
+                <div class="grid-3" style="margin-top: 20px;">
+                    <div class="card">
+                        <h3>UI & UX</h3>
+                        <p>Advanced interface design completed and tested.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Functionality</h3>
+                        <p>Successfully implemented Core Task Assigning feature.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Reports</h3>
+                        <p>Internal reporting module verification underway.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 09 / 13</div>
+        </div>
+
+        <!-- SLIDE 10: ROADBLOCKS & CHALLENGES -->
+        <div class="slide">
+            <h2 class="slide-title">Roadblocks & Critical Challenges</h2>
+            <div class="grid-2">
+                <div class="card" style="border-left: 6px solid var(--danger-red);">
+                    <h3>Black Ticket Launch Delay</h3>
+                    <p>Current roadblock stems from <strong>Razorpay Verification Protocols</strong>. Compliance checks are mandatory before live transactions can commence.</p>
+                    <div class="status-badge" style="background: var(--danger-red);">URGENT</div>
+                </div>
+                <div class="card" style="border-left: 6px solid #ffa500;">
+                    <h3>Resource Split / Bottleneck</h3>
+                    <p>The <strong>Core Team Reporting App</strong> is at 70% completion, but further progress is slowed by high meeting volume.</p>
+                    <div class="accent-box">
+                        <p style="font-size: 13px;">14 High-Priority meetings compete directly with focused development hours.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 10 / 13</div>
+        </div>
+
+        <!-- SLIDE 11: MARSHIRE & LMS -->
+        <div class="slide">
+            <h2 class="slide-title">MarsHire & LMS Platforms</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>MarsHire (Assessment)</h3>
+                    <ul class="styled-list">
+                        <li>Added & tested new questions for 2 mock tests</li>
+                        <li>Complete UI redesign & bug fixing</li>
+                        <li>Conducted comprehensive software QA</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>LMS (Learning Mgmt)</h3>
+                    <ul class="styled-list">
+                        <li>Enabled Suspended IDs for protocol compliance</li>
+                        <li>Google Cloud Account & SDK login review</li>
+                        <li>Integrated demo test numbers for evaluation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 11 / 13</div>
+        </div>
+
+        <!-- SLIDE 12: UPCOMING ACTIONS -->
+        <div class="slide">
+            <h2 class="slide-title">Roadmap & Next Actions</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Development</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-code"></i> Complete 30% balance of Reporting App</li>
+                        <li><i class="fas fa-volume-up"></i> Integrate audio features into LMS</li>
+                        <li><i class="fas fa-users-cog"></i> Update HRM hierarchies & leave mgmt</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Business</h3>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-credit-card"></i> Push Razorpay to final verification</li>
+                        <li><i class="fas fa-search"></i> Finalize vetting for Pydah/JSRC candidates</li>
+                        <li><i class="fas fa-rocket"></i> Scale SaaS MRR towards ₹3L target</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-counter">PAGE 12 / 13</div>
+        </div>
+
+        <!-- SLIDE 13: THANK YOU -->
+        <div class="slide" style="text-align: center; justify-content: center; align-items: center;">
+            <p style="letter-spacing: 5px; opacity: 0.6; margin-bottom: 20px;">END OF STATUS UPDATE</p>
+            <h1>THANK <span>YOU</span></h1>
+            <div style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); width: 450px; padding-top: 30px;">
+                <p style="font-size: 22px; font-weight: 700;">Nithya Prakash M</p>
+                <p style="color: var(--electric-purple); font-weight: 800; letter-spacing: 3px;">HEAD OF TECHNICAL</p>
+                <p style="font-size: 14px; opacity: 0.7; margin-top: 15px;">FortuMars AI Technologies & Business Solutions Pvt. Ltd.</p>
+            </div>
+            <div class="slide-counter">PAGE 13 / 13</div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn">PREV</button>
+            <button class="nav-btn" id="nextBtn">NEXT</button>
+        </div>
     </div>
-    <div class="closing-container">
-      <p><span id="line2" class="typing-cursor"></span></p>
-      <p><span id="signature" class="typing-cursor"></span></p>
-    </div>
-  </div>
 
-  <!-- UI Controls -->
-  <div class="controls" id="controls">
-    <button class="control-btn" id="replayBtn" title="Replay Animation">🔄</button>
-    <button class="control-btn" id="musicBtn" title="Pause/Play Music">🎵</button>
-  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
 
-  <script>
-    // --- DOM Elements ---
-    const envelope = document.getElementById("envelopeContainer");
-    const letterCard = document.getElementById("letterCard");
-    const openSound = document.getElementById("openSound");
-    const backgroundMusic = document.getElementById("backgroundMusic");
-    const controls = document.getElementById("controls");
-    const replayBtn = document.getElementById("replayBtn");
-    const musicBtn = document.getElementById("musicBtn");
+            function updateSlides() {
+                slides.forEach((s, i) => {
+                    s.classList.toggle('active', i === currentSlide);
+                });
+            }
 
-    // --- Text for Typing Animation ---
-    const line1Text = "To the sweetest soul in the universe, may your day be as magical and radiant as your smile!";
-    const line2Text = "Wishing you endless love & sparkle!";
-    const signatureText = "With love, from Anitha 💕";
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlides();
+            });
 
-    // --- State ---
-    let isCardOpen = false;
-    let wordInterval;
+            document.getElementById('prevBtn').addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlides();
+            });
 
-    // --- Particle, Star, and Word Effects ---
-    function createParticles(type, count, colors) {
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement("div");
-        el.className = type;
-        el.style.setProperty("--color", colors[Math.floor(Math.random() * colors.length)]);
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = (type === 'heart' ? 4 + Math.random() * 4 : 3 + Math.random() * 3) + "s";
-        if (type === 'heart') {
-            el.innerHTML = "❤️"; el.style.fontSize = (1 + Math.random()) + "rem";
-        }
-        document.body.appendChild(el);
-        el.addEventListener("animationend", () => el.remove());
-      }
-    }
-
-    function createStars() {
-        const container = document.getElementById('stars-container');
-        if (container.childElementCount > 0) return;
-        for(let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            const size = Math.random() * 3;
-            star.style.width = `${size}px`; star.style.height = `${size}px`;
-            star.style.top = `${Math.random() * 100}%`; star.style.left = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 5}s`; star.style.animationDuration = `${2 + Math.random() * 3}s`;
-            container.appendChild(star);
-        }
-    }
-
-    // NEW: Floating Words Function
-    function createFloatingWord() {
-        const words = ["Joy", "Love", "Smile", "Hugs", "Magic", "Sparkle", "Happy"];
-        const container = document.getElementById('floating-words-container');
-
-        const wordEl = document.createElement('div');
-        wordEl.className = 'floating-word';
-        wordEl.textContent = words[Math.floor(Math.random() * words.length)];
-
-        wordEl.style.left = `${Math.random() * 90}vw`;
-        wordEl.style.bottom = `-50px`; // Start from below the viewport
-        wordEl.style.fontSize = `${20 + Math.random() * 20}px`;
-        wordEl.style.animationDuration = `${5 + Math.random() * 5}s`;
-
-        container.appendChild(wordEl);
-
-        wordEl.addEventListener('animationend', () => {
-            wordEl.remove();
+            document.addEventListener('keydown', (e) => {
+                if(e.key === "ArrowRight") {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateSlides();
+                } else if(e.key === "ArrowLeft") {
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    updateSlides();
+                }
+            });
         });
-    }
-
-    // --- Typewriter Effect ---
-    function typeWriter(elementId, text, speed, onComplete) {
-      const element = document.getElementById(elementId);
-      element.innerHTML = "";
-      let i = 0;
-      function type() {
-        if (i < text.length) {
-          element.innerHTML += text.charAt(i); i++;
-          setTimeout(type, speed);
-        } else {
-            element.classList.remove('typing-cursor');
-            if(onComplete) onComplete();
-        }
-      }
-      element.classList.add('typing-cursor');
-      type();
-    }
-
-    // --- Main Functions ---
-    function openCard() {
-      if(isCardOpen) return;
-      isCardOpen = true;
-
-      envelope.classList.add("open");
-      openSound.play().catch(e => console.error("Sound failed:", e));
-
-      setTimeout(() => {
-        letterCard.classList.add("show");
-        controls.classList.add("show");
-        backgroundMusic.volume = 0.3;
-        backgroundMusic.play().catch(e => console.error("Music failed:", e));
-      }, 600);
-
-      setTimeout(() => {
-        createParticles('confetti', 60, ['#ff69b4', '#ffc0cb', '#ffb6c1', '#ffffff']);
-        createParticles('heart', 30, ['#ff1493', '#ffc0cb']);
-        // Start floating words
-        wordInterval = setInterval(createFloatingWord, 1000);
-      }, 1200);
-
-      setTimeout(() => {
-        typeWriter('line1', line1Text, 50, () => {
-          typeWriter('line2', line2Text, 60, () => {
-            typeWriter('signature', signatureText, 70);
-          });
-        });
-      }, 1400);
-
-      setTimeout(() => envelope.style.zIndex = -1, 1000);
-    }
-
-    function resetAnimation() {
-      isCardOpen = false;
-      letterCard.classList.remove("show");
-      controls.classList.remove("show");
-      envelope.classList.remove("open");
-      envelope.style.zIndex = 10;
-
-      backgroundMusic.pause();
-      backgroundMusic.currentTime = 0;
-      musicBtn.innerHTML = '🎵';
-
-      // Stop and clear floating words
-      clearInterval(wordInterval);
-      document.getElementById('floating-words-container').innerHTML = '';
-
-      document.getElementById('line1').innerHTML = "";
-      document.getElementById('line2').innerHTML = "";
-      document.getElementById('signature').innerHTML = "";
-    }
-
-    // --- Event Listeners ---
-    envelope.addEventListener("click", openCard);
-    replayBtn.addEventListener("click", resetAnimation);
-
-    musicBtn.addEventListener("click", () => {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-        musicBtn.innerHTML = '🎵';
-      } else {
-        backgroundMusic.pause();
-        musicBtn.innerHTML = '🔇';
-      }
-    });
-
-    // --- Initial Setup ---
-    createStars();
-  </script>
+    </script>
 </body>
 </html>
