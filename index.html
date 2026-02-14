@@ -6,7 +6,7 @@
     <title>Technical Progress Report - Nithya Prakash M</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -54,56 +54,72 @@
             left: 0;
             display: none;
             flex-direction: column;
-            padding: 50px 70px;
+            padding: 60px 80px; /* Increased padding for better centering */
             color: var(--bright-white);
             z-index: 1;
         }
 
         .slide.active { display: flex; z-index: 10; }
 
+        /* Centering Logic for Cover and End Slide */
+        .slide.center-content {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Normal Content Slide Alignment */
+        .slide:not(.center-content) {
+            justify-content: flex-start;
+        }
+
         .logo-box {
             position: absolute;
             top: 40px;
             right: 70px;
-            height: 65px;
+            height: 50px; /* Slightly smaller for better fit */
             z-index: 100;
         }
 
         .logo-box img { height: 100%; filter: drop-shadow(0 0 15px var(--electric-purple)); }
 
-        h1 { font-size: 72px; font-weight: 800; line-height: 1; margin: 0; }
+        h1 { font-size: 72px; font-weight: 800; line-height: 1.1; margin: 0; }
         h1 span { color: var(--electric-purple); }
 
         h2.slide-title {
-            font-size: 30px;
-            margin-bottom: 30px;
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 40px; /* More breathing room below title */
             border-left: 6px solid var(--electric-purple);
-            padding-left: 20px;
+            padding-left: 25px;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
+            line-height: 1;
         }
 
-        h3 { color: var(--electric-purple); font-size: 18px; margin: 0 0 10px 0; font-weight: 700; }
+        h3 { color: var(--electric-purple); font-size: 19px; margin: 0 0 15px 0; font-weight: 700; line-height: 1.3; }
 
-        p, li { font-size: 15px; color: var(--soft-white); line-height: 1.5; margin-bottom: 8px; }
+        p, li { font-size: 15px; color: var(--soft-white); line-height: 1.6; margin-bottom: 8px; }
 
         .nav-controls {
             position: absolute;
-            bottom: 35px;
-            right: 70px;
+            bottom: 40px;
+            right: 80px;
             display: flex;
             gap: 15px;
             z-index: 1000;
         }
 
         .nav-btn {
-            background: rgba(157, 80, 187, 0.2);
+            background: rgba(157, 80, 187, 0.15);
             border: 1px solid var(--electric-purple);
             color: white;
-            padding: 10px 22px;
+            padding: 12px 24px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -112,68 +128,114 @@
 
         .slide-counter {
             position: absolute;
-            bottom: 45px;
-            left: 70px;
+            bottom: 50px;
+            left: 80px;
             font-size: 12px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.3);
             letter-spacing: 3px;
             font-weight: 700;
         }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(157, 80, 187, 0.2);
-            border-radius: 12px;
-            padding: 22px;
-            height: 100%;
+        /* GRID SYSTEMS - Improved for Fit */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%; /* Fill remaining height if needed */
+            align-content: start;
         }
 
-        .accent-box { background: rgba(157, 80, 187, 0.1); border-radius: 8px; padding: 12px; margin-top: 10px; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            align-content: start;
+        }
 
-        ul.styled-list { list-style: none; padding: 0; }
-        ul.styled-list li { position: relative; padding-left: 25px; margin-bottom: 8px; }
-        ul.styled-list li i { position: absolute; left: 0; color: var(--electric-purple); top: 3px; }
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(157, 80, 187, 0.2);
+            border-radius: 12px;
+            padding: 28px;
+            height: 100%; /* Ensures equal height in grids */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Spacing inside cards */
+        .card > *:last-child { margin-bottom: 0; }
+
+        .accent-box { background: rgba(157, 80, 187, 0.1); border-radius: 8px; padding: 15px; margin-top: auto; }
+
+        ul.styled-list { list-style: none; padding: 0; margin: 0; }
+        ul.styled-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            display: flex; /* Better alignment for multiline text */
+            align-items: flex-start;
+        }
+
+        /* Icon Alignment Fix */
+        ul.styled-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px; /* Aligns visually with the first line of text */
+            color: var(--electric-purple);
+            width: 20px;
+            text-align: center;
+        }
 
         .status-badge {
             display: inline-block;
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: 800;
             background: var(--electric-purple);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .date-badge { color: var(--neon-green); font-family: 'Azeret Mono', monospace; font-size: 14px; }
+        .date-badge { color: var(--neon-green); font-family: 'Azeret Mono', monospace; font-size: 14px; margin-bottom: 10px; display: block; }
 
-        .metric-value { font-size: 24px; font-weight: 800; color: var(--neon-green); margin: 5px 0; }
+        .metric-value { font-size: 28px; font-weight: 800; color: var(--neon-green); margin: 10px 0; }
 
+        /* Table Alignment */
         .revenue-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 13px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 15px;
+            font-size: 14px;
         }
         .revenue-table th {
             text-align: left;
-            padding: 8px 12px;
+            padding: 12px 15px;
             border-bottom: 2px solid var(--electric-purple);
             color: var(--electric-purple);
             text-transform: uppercase;
             font-weight: 800;
+            letter-spacing: 0.5px;
         }
         .revenue-table td {
-            padding: 8px 12px;
+            padding: 12px 15px;
             border-bottom: 1px solid rgba(157, 80, 187, 0.1);
+            vertical-align: middle;
         }
         .revenue-table tr:hover {
             background: rgba(157, 80, 187, 0.05);
         }
         .price-text { color: var(--bright-white); font-weight: 700; font-family: 'Azeret Mono', monospace; }
         .amc-text { color: var(--neon-green); font-weight: 800; font-family: 'Azeret Mono', monospace; }
+
+        /* Specific Helper for Content Blocks */
+        .content-block {
+            flex: 1; /* Pushes content to fill space */
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -184,15 +246,15 @@
         </div>
 
         <!-- SLIDE 1: COVER -->
-        <div class="slide active">
-            <div style="margin-top: 100px;">
+        <div class="slide active center-content">
+            <div style="text-align: left; max-width: 800px; width: 100%;">
                 <p class="date-badge">CONSOLIDATED WEEKLY REPORT</p>
                 <h1>TECHNICAL STATUS<br><span>UPDATE</span></h1>
-                <div style="margin-top: 60px;">
-                    <p style="font-size: 32px; font-weight: 800; margin-bottom: 5px;">Nithya Prakash M</p>
-                    <p style="font-size: 20px; color: var(--electric-purple); font-weight: 700; letter-spacing: 4px;">HEAD OF TECHNICAL</p>
-                    <div style="margin-top: 30px; opacity: 0.8;">
-                        <p>COGNITHORZ | FORTUMARS AI TECHNOLOGIES</p>
+                <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(157, 80, 187, 0.3);">
+                    <p style="font-size: 32px; font-weight: 800; margin-bottom: 10px; color: white;">Nithya Prakash M</p>
+                    <p style="font-size: 18px; color: var(--electric-purple); font-weight: 700; letter-spacing: 4px; margin-bottom: 30px;">HEAD OF TECHNICAL</p>
+                    <div style="opacity: 0.7; font-family: 'Azeret Mono', monospace; font-size: 13px;">
+                        <p style="margin-bottom: 5px;">COGNITHORZ | FORTUMARS AI TECHNOLOGIES</p>
                         <p>Period: February 11 – February 13, 2025</p>
                     </div>
                 </div>
@@ -232,6 +294,7 @@
                 <div class="card">
                     <div class="status-badge">PRICING MODELS</div>
                     <ul class="styled-list">
+                        <li>Created a template for the Tier & Plans for our clients</li>
                         <li>Finalized tiered templates for Websites & Software</li>
                         <li>Specialized CRM pricing for dedicated clients</li>
                         <li>SaaS targets: 100+ Shops by July</li>
@@ -242,7 +305,8 @@
                     <ul class="styled-list">
                         <li>Razorpay Account: Verification Stage</li>
                         <li>Subdomain Config: Created 2 new subdomains</li>
-                        <li>Official Mail: operations@cognithorz.com created</li>
+                        <li>Official Mail: FortuMars | Cognithorz | Futryx | Rudra Nethra created for JSRC & Pydah Interns</li>
+                        <li>Official Mail: operations@cognithorz.com & Hr@cognithorz.com created</li>
                     </ul>
                 </div>
             </div>
@@ -266,7 +330,13 @@
                     <ul class="styled-list">
                         <li><i class="fas fa-map-marker-alt"></i> GPS Tracking system audit & implementation</li>
                         <li><i class="fas fa-mobile"></i> Optimized menu for mobile viewing</li>
-                        <li><i class="fas fa-bolt"></i> Implemented Popper animations for UX</li>
+                        <li><i class="fas fa-bolt"></i> Designed and implemented dynamic Popper-based animations for improved UX interactions</li>
+                        <li><i class="fas fa-bolt"></i> Built intern and employee reporting modules with structured daily and weekly formats</li>
+                        <li><i class="fas fa-bolt"></i> Implemented automated PDF report generation for submitted reports</li>
+                        <li><i class="fas fa-bolt"></i> Enabled WhatsApp and email-based report delivery automation</li>
+                        <li><i class="fas fa-bolt"></i> Developed admin dashboard controls for report review and approval</li>
+                        <li><i class="fas fa-bolt"></i> Added report validation rules before final submission</li>
+                        <li><i class="fas fa-bolt"></i> Integrated subdomain-based access for secure client usage</li>
                     </ul>
                 </div>
             </div>
@@ -277,8 +347,8 @@
         <div class="slide">
             <h2 class="slide-title">Revenue Metrics & Growth Plan</h2>
             <div class="grid-2">
-                <div>
-                    <div class="card" style="padding: 0 15px 15px 15px; border-color: var(--neon-green);">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="card" style="padding: 0 20px 20px 20px; border-color: var(--neon-green);">
                         <table class="revenue-table">
                             <thead>
                                 <tr>
@@ -323,25 +393,24 @@
                             </tfoot>
                         </table>
                     </div>
-                    <div class="card" style="margin-top: 10px; padding: 15px;">
-                        <h3>Project Timeline Expectations</h3>
+                    <div class="card" style="padding: 20px;">
+                        <h3>Digital Marketing Plans:</h3>
                         <ul class="styled-list">
-                            <li><i class="fas fa-calendar-alt"></i> <strong>Job Seeker:</strong> 3 - 4 Months</li>
-                            <li><i class="fas fa-calendar-check"></i> <strong>JM TECHS:</strong> 2 - 3 Months</li>
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Job Seeker:</strong> 3 - 4 Months &nbsp;|&nbsp; <strong>JM TECHS:</strong> 2 - 3 Months</li>
                         </ul>
                     </div>
                 </div>
                 <div class="card">
                     <div class="status-badge" style="background: var(--neon-green); color: black;">SAAS GROWTH PLAN</div>
-                    <div class="metric-value" style="font-size: 32px;">₹3L+ MRR <span style="font-size: 14px; opacity: 0.6;">(Target July)</span></div>
+                    <div class="metric-value" style="font-size: 32px;">₹3L+ MRR <span style="font-size: 14px; opacity: 0.6; color: white; font-weight: normal;">(Target July)</span></div>
 
-                    <ul class="styled-list" style="margin-top: 20px;">
+                    <ul class="styled-list" style="margin-top: 30px;">
                         <li><i class="fas fa-bullseye"></i> Onboard 100+ Shops via Boutique SaaS</li>
                         <li><i class="fas fa-chart-pie"></i> AMC/Marketing Contribution: ₹20,500</li>
                     </ul>
 
-                    <div class="accent-box" style="background: rgba(157, 80, 187, 0.2);">
-                        <p style="font-size: 12px; font-style: italic;">Note: Digital Marketing and high-end AMC packages are now core to our monthly recurring strategy.</p>
+                    <div class="accent-box" style="background: rgba(157, 80, 187, 0.2); margin-top: auto;">
+                        <p style="font-size: 13px; font-style: italic; margin: 0;">Note: Digital Marketing and high-end AMC packages are now core to our monthly recurring strategy.</p>
                     </div>
                 </div>
             </div>
@@ -354,7 +423,7 @@
             <div class="grid-2">
                 <div class="card">
                     <h3>Assisted Varsha (Support Lead)</h3>
-                    <p>Strategic technical assistance for handling intern inquiries:</p>
+                    <p style="margin-bottom: 20px;">Strategic technical assistance for handling intern inquiries:</p>
                     <ul class="styled-list">
                         <li><i class="fas fa-graduation-cap"></i> JSRC Intern Technical Query Resolution</li>
                         <li><i class="fas fa-school"></i> Pydah Intern Technical Query Resolution</li>
@@ -363,7 +432,7 @@
                 </div>
                 <div class="card">
                     <h3>Infrastructure Configuration</h3>
-                    <p>Managed deployment of MS Teams & Outlook for new interns:</p>
+                    <p style="margin-bottom: 20px;">Managed deployment of MS Teams & Outlook for new interns:</p>
                     <ul class="styled-list">
                         <li><i class="fas fa-envelope-open-text"></i> Futryx & Cognithorz</li>
                         <li><i class="fas fa-eye"></i> Rudhra Netra</li>
@@ -380,15 +449,15 @@
             <h2 class="slide-title">Recruitment & Vetting</h2>
             <div class="card">
                 <h3>Collaborative Technical Interviews</h3>
-                <div class="accent-box" style="border-left: 4px solid var(--electric-purple);">
-                    <p>Conducted high-level technical assessment sessions alongside <strong>Mr. Ragu</strong> for candidate screening.</p>
+                <div class="accent-box" style="border-left: 4px solid var(--electric-purple); margin-bottom: 30px; margin-top: 10px;">
+                    <p style="margin: 0;">Conducted high-level technical assessment sessions alongside <strong>Mr. Ragu</strong> for candidate screening.</p>
                 </div>
-                <div class="grid-2" style="margin-top: 20px;">
-                    <div class="card" style="background: rgba(157, 80, 187, 0.05);">
+                <div class="grid-2" style="height: auto;">
+                    <div class="card" style="background: rgba(157, 80, 187, 0.05); border: none;">
                         <h3 style="color: var(--neon-green);">JSRC Candidates</h3>
                         <p>Evaluated core programming logic, software architecture understanding, and problem-solving aptitude.</p>
                     </div>
-                    <div class="card" style="background: rgba(157, 80, 187, 0.05);">
+                    <div class="card" style="background: rgba(157, 80, 187, 0.05); border: none;">
                         <h3 style="color: var(--neon-green);">PYDAH Candidates</h3>
                         <p>Assessed technical foundations and suitability for upcoming AI-driven projects.</p>
                     </div>
@@ -402,20 +471,25 @@
             <h2 class="slide-title">Internship Program & AI Training</h2>
             <div class="grid-2">
                 <div class="card">
-                    <h3>Modern AI Stack</h3>
-                    <p>Providing active mentorship on:</p>
+                    <h3>Modern AI Stack – Training Delivered</h3>
+                    <p style="margin-bottom: 20px;">Hands-on product & AI tool training conducted throughout the week:</p>
                     <ul class="styled-list">
-                        <li><i class="fas fa-robot"></i> Lovable, Replit, and Bolt.new</li>
-                        <li><i class="fas fa-database"></i> Firebase & MongoDB Architecture</li>
-                        <li><i class="fas fa-laptop-code"></i> AI-Assisted Rapid Development</li>
+                        <li><i class="fas fa-robot"></i> Practical training on Lovable, Replit & Bolt.new for rapid prototyping</li>
+                        <li><i class="fas fa-database"></i> Firebase & MongoDB database structure, rules, and data flow explanation</li>
+                        <li><i class="fas fa-laptop-code"></i> AI-assisted development workflow for web & mobile projects</li>
+                        <li><i class="fas fa-brain"></i> Prompt engineering techniques for feature generation and debugging</li>
+                        <li><i class="fas fa-cogs"></i> Converting AI-generated code into production-ready modules</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3>Mentorship Scope</h3>
+                    <h3>Mentorship & Weekly Outcomes</h3>
+                    <p style="margin-bottom: 20px;">Direct oversight of intern progress:</p>
                     <ul class="styled-list">
-                        <li><i class="fas fa-chalkboard-teacher"></i> Daily doubt clearing for intern projects</li>
-                        <li><i class="fas fa-code-branch"></i> Reviewing demo project architectures</li>
-                        <li><i class="fas fa-lightbulb"></i> Best practices in AI-prompt engineering</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i> Daily doubt-clearing sessions for intern demo projects</li>
+                        <li><i class="fas fa-code-branch"></i> Reviewed and corrected intern project architectures</li>
+                        <li><i class="fas fa-lightbulb"></i> Guided interns on best practices in clean UI & scalable logic</li>
+                        <li><i class="fas fa-tasks"></i> Assigned real-time product-based tasks aligned with company projects</li>
+                        <li><i class="fas fa-check-circle"></i> Ensured interns followed reporting standards using internal tools</li>
                     </ul>
                 </div>
             </div>
@@ -425,24 +499,44 @@
         <!-- SLIDE 9: INTERNAL APPLICATIONS -->
         <div class="slide">
             <h2 class="slide-title">Internal Tooling: Core-Reporting App</h2>
-            <div class="card">
-                <h3>To-Do & Reporting Application</h3>
-                <div class="accent-box" style="display: flex; justify-content: space-between; align-items: center;">
-                    <p style="color: var(--neon-green); font-weight: 700; margin: 0;">Completion Status: 70%</p>
-                    <p style="font-size: 12px; opacity: 0.6; margin: 0;">(30% Remaining: Priority Development)</p>
+            <div class="card" style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+                    <h3>To-Do & Reporting Application</h3>
+                    <div class="accent-box" style="margin: 0; padding: 10px 20px; border-left: 3px solid var(--neon-green);">
+                        <p style="color: var(--neon-green); font-weight: 700; margin: 0; display: inline-block;">Completion Status: 70%</p>
+                        <span style="font-size: 12px; opacity: 0.6; margin-left: 10px;">(30% Remaining: Analytics & Role Automation)</span>
+                    </div>
                 </div>
-                <div class="grid-3" style="margin-top: 20px;">
+
+                <div class="grid-3" style="flex: 1;">
                     <div class="card">
                         <h3>UI & UX</h3>
-                        <p>Advanced interface design completed and tested.</p>
+                        <ul class="styled-list">
+                            <li><i class="fas fa-paint-brush"></i> Designed clean, distraction-free reporting interface</li>
+                            <li><i class="fas fa-swatchbook"></i> Implemented consistent UI components for daily & weekly reports</li>
+                            <li><i class="fas fa-mobile-alt"></i> Verified responsive behavior across laptop and mobile views</li>
+                            <li><i class="fas fa-arrows-alt-h"></i> Swipe-based navigation tested for report history</li>
+                        </ul>
                     </div>
+
                     <div class="card">
-                        <h3>Functionality</h3>
-                        <p>Successfully implemented Core Task Assigning feature.</p>
+                        <h3>Core Functionality</h3>
+                        <ul class="styled-list">
+                            <li><i class="fas fa-tasks"></i> Implemented task assigning module for team members</li>
+                            <li><i class="fas fa-user-check"></i> Role-based access for User & Admin workflows</li>
+                            <li><i class="fas fa-edit"></i> Daily & weekly report submission logic completed</li>
+                            <li><i class="fas fa-sync"></i> Data sync validation between user and admin views</li>
+                        </ul>
                     </div>
+
                     <div class="card">
-                        <h3>Reports</h3>
-                        <p>Internal reporting module verification underway.</p>
+                        <h3>Reports & Verification</h3>
+                        <ul class="styled-list">
+                            <li><i class="fas fa-file-alt"></i> Internal report format finalized and validated</li>
+                            <li><i class="fas fa-eye"></i> Admin report review and verification flow tested</li>
+                            <li><i class="fas fa-check-circle"></i> Ensured report submission accuracy and completeness</li>
+                            <li><i class="fas fa-spinner"></i> Analytics dashboard & export module in progress</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -452,19 +546,45 @@
         <!-- SLIDE 10: ROADBLOCKS & CHALLENGES -->
         <div class="slide">
             <h2 class="slide-title">Roadblocks & Critical Challenges</h2>
-            <div class="grid-2">
+
+            <div class="grid-2" style="height: auto; margin-bottom: 20px;">
+                <!-- CHALLENGE 1 -->
                 <div class="card" style="border-left: 6px solid var(--danger-red);">
-                    <h3>Black Ticket Launch Delay</h3>
-                    <p>Current roadblock stems from <strong>Razorpay Verification Protocols</strong>. Compliance checks are mandatory before live transactions can commence.</p>
-                    <div class="status-badge" style="background: var(--danger-red);">URGENT</div>
+                    <h3>Platform & External Dependency Delays</h3>
+                    <p>Multiple production-ready initiatives were impacted due to mandatory <strong>external approvals</strong>.</p>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-cloud"></i> New Cloud account creation & SDK verification in progress</li>
+                        <li><i class="fas fa-credit-card"></i> Razorpay KYC & compliance verification pending</li>
+                        <li><i class="fas fa-store"></i> Google Play Store account activation under review</li>
+                        <li><i class="fas fa-lock"></i> Live deployment blocked until platform approvals</li>
+                    </ul>
+                    <div class="status-badge" style="background: var(--danger-red); margin-top: auto;">BLOCKED – EXTERNAL SYSTEMS</div>
                 </div>
+
+                <!-- CHALLENGE 2 -->
                 <div class="card" style="border-left: 6px solid #ffa500;">
-                    <h3>Resource Split / Bottleneck</h3>
-                    <p>The <strong>Core Team Reporting App</strong> is at 70% completion, but further progress is slowed by high meeting volume.</p>
-                    <div class="accent-box">
-                        <p style="font-size: 13px;">14 High-Priority meetings compete directly with focused development hours.</p>
+                    <h3>Operational Load & Resource Split</h3>
+                    <p>Product development velocity reduced due to simultaneous handling of <strong>people, products, and revenue</strong>.</p>
+                    <ul class="styled-list">
+                        <li><i class="fas fa-users-cog"></i> Managing & mentoring technical interns daily</li>
+                        <li><i class="fas fa-layer-group"></i> Developing multiple in-house products in parallel</li>
+                        <li><i class="fas fa-handshake"></i> High-frequency client meetings & requirement discussions</li>
+                        <li><i class="fas fa-rupee-sign"></i> Technical revenue planning & quotation preparation</li>
+                    </ul>
+                    <div class="accent-box" style="margin-top: auto;">
+                        <p style="font-size: 13px; margin: 0;">Result: Focus shifted from pure coding to coordination & delivery.</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- IMPACT SUMMARY -->
+            <div class="card" style="border-left: 6px solid var(--electric-purple); flex-direction: row; align-items: center; justify-content: space-between; padding: 25px;">
+                <h3 style="margin: 0; width: 30%;">Net Impact on Product Development</h3>
+                <ul class="styled-list" style="width: 65%; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <li style="margin: 0;"><i class="fas fa-chart-line"></i> In-house product development slowed, not stalled</li>
+                    <li style="margin: 0;"><i class="fas fa-tools"></i> Core Team Reporting App paused at 70%</li>
+                    <li style="margin: 0;"><i class="fas fa-sync-alt"></i> Majority effort redirected to scalability</li>
+                </ul>
             </div>
             <div class="slide-counter">PAGE 10 / 13</div>
         </div>
@@ -473,20 +593,27 @@
         <div class="slide">
             <h2 class="slide-title">MarsHire & LMS Platforms</h2>
             <div class="grid-2">
+                <!-- MARSHIRE -->
                 <div class="card">
-                    <h3>MarsHire (Assessment)</h3>
+                    <h3>MarsHire – Assessment Platform</h3>
                     <ul class="styled-list">
-                        <li>Added & tested new questions for 2 mock tests</li>
-                        <li>Complete UI redesign & bug fixing</li>
-                        <li>Conducted comprehensive software QA</li>
+                        <li><i class="fas fa-clipboard-check"></i> Added and validated new question sets for 2 mock assessments</li>
+                        <li><i class="fas fa-paint-brush"></i> Performed complete UI redesign to improve usability</li>
+                        <li><i class="fas fa-bug"></i> Identified and fixed existing functional & UI bugs</li>
+                        <li><i class="fas fa-vial"></i> Conducted end-to-end QA testing for intern assessments</li>
+                        <li><i class="fas fa-play-circle"></i> Initiated live test sessions for interns</li>
                     </ul>
                 </div>
+
+                <!-- LMS -->
                 <div class="card">
-                    <h3>LMS (Learning Mgmt)</h3>
+                    <h3>LMS – Learning Management System</h3>
                     <ul class="styled-list">
-                        <li>Enabled Suspended IDs for protocol compliance</li>
-                        <li>Google Cloud Account & SDK login review</li>
-                        <li>Integrated demo test numbers for evaluation</li>
+                        <li><i class="fas fa-user-lock"></i> Enabled suspended ID status for interns as per compliance protocol</li>
+                        <li><i class="fas fa-cloud"></i> Created and reviewed Google Cloud account for LMS-related services</li>
+                        <li><i class="fas fa-key"></i> Reviewed SDK login & authentication flows</li>
+                        <li><i class="fas fa-list-ol"></i> Integrated demo test numbers for internal evaluation & testing</li>
+                        <li><i class="fas fa-cogs"></i> Planned LMS enhancements based on management feedback</li>
                     </ul>
                 </div>
             </div>
@@ -494,37 +621,45 @@
         </div>
 
         <!-- SLIDE 12: UPCOMING ACTIONS -->
-        <div class="slide">
-            <h2 class="slide-title">Roadmap & Next Actions</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <h3>Development</h3>
-                    <ul class="styled-list">
-                        <li><i class="fas fa-code"></i> Complete 30% balance of Reporting App</li>
-                        <li><i class="fas fa-volume-up"></i> Integrate audio features into LMS</li>
-                        <li><i class="fas fa-users-cog"></i> Update HRM hierarchies & leave mgmt</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Business</h3>
-                    <ul class="styled-list">
-                        <li><i class="fas fa-credit-card"></i> Push Razorpay to final verification</li>
-                        <li><i class="fas fa-search"></i> Finalize vetting for Pydah/JSRC candidates</li>
-                        <li><i class="fas fa-rocket"></i> Scale SaaS MRR towards ₹3L target</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="slide-counter">PAGE 12 / 13</div>
+       <div class="slide">
+    <h2 class="slide-title">Roadmap & Next Actions</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h3>Development & Product</h3>
+            <ul class="styled-list">
+                <li>Complete remaining 30% of Reporting WebApp</li>
+                <li>Integrate audio-based learning features into LMS</li>
+                <li>Enhance HRM hierarchy, leave & access management</li>
+                <li>Continue in-house product development (low productivity phase due to parallel initiatives)</li>
+                <li>Cloud account creation & configuration (GCP, Firebase)</li>
+                <li>Google Play Store account activation & app deployment readiness</li>
+            </ul>
         </div>
+        <div class="card">
+            <h3>Business, Revenue & Outreach</h3>
+            <ul class="styled-list">
+                <li>Managing and mentoring technical interns</li>
+                <li>Client meetings for requirement analysis and demos</li>
+                <li>Planning new Technical Revenue model & monetization strategy</li>
+                <li>Execution planning for upcoming technical revenue projects</li>
+                <li>Social awareness program for Blood Donation (App + Web completed)</li>
+                <li>Black Ticket platform planning & feature expansion</li>
+                <li>Develop final stage & Deploy SaaS Product towards ₹3L/month target</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-counter">PAGE 12 / 13</div>
+</div>
+
 
         <!-- SLIDE 13: THANK YOU -->
-        <div class="slide" style="text-align: center; justify-content: center; align-items: center;">
-            <p style="letter-spacing: 5px; opacity: 0.6; margin-bottom: 20px;">END OF STATUS UPDATE</p>
+        <div class="slide center-content">
+            <p style="letter-spacing: 5px; opacity: 0.6; margin-bottom: 30px;">END OF STATUS UPDATE</p>
             <h1>THANK <span>YOU</span></h1>
-            <div style="margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); width: 450px; padding-top: 30px;">
-                <p style="font-size: 22px; font-weight: 700;">Nithya Prakash M</p>
-                <p style="color: var(--electric-purple); font-weight: 800; letter-spacing: 3px;">HEAD OF TECHNICAL</p>
-                <p style="font-size: 14px; opacity: 0.7; margin-top: 15px;">FortuMars AI Technologies & Business Solutions Pvt. Ltd.</p>
+            <div style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); width: 450px; padding-top: 40px; text-align: center;">
+                <p style="font-size: 24px; font-weight: 700; margin-bottom: 5px; color: white;">Nithya Prakash M</p>
+                <p style="color: var(--electric-purple); font-weight: 800; letter-spacing: 3px; font-size: 14px;">HEAD OF TECHNICAL</p>
+                <p style="font-size: 13px; opacity: 0.6; margin-top: 20px;">FortuMars AI Technologies & Business Solutions Pvt. Ltd.</p>
             </div>
             <div class="slide-counter">PAGE 13 / 13</div>
         </div>
